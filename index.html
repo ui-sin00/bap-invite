@@ -150,6 +150,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
   .btn:active{transform:scale(.97)}
 }
 </style>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
 <div class="page">
@@ -242,7 +243,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
   <div class="end-body">
   <p class="display">친구야, <em>밥 한번</em> 먹자</p>
   <p class="sub">11월 15일(일) 오후 2시 · 옥산교회</p>
-  <button class="btn" type="button" id="share">친구한테 보내기</button>
+  <button class="btn" type="button" id="share">카카오톡으로 보내기</button>
   <p id="copied" role="status" aria-live="polite"></p>
   </div>
   <div class="end-photo">
@@ -301,6 +302,25 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
     copy(document.getElementById('addr').textContent, '주소를 복사했어요');
   });
   document.getElementById('share').addEventListener('click', function () {
+    var site = 'https://bap-hanbeon.vercel.app/';
+    try {
+      if (window.Kakao && Kakao.Share) {
+        if (!Kakao.isInitialized()) Kakao.init('ab824057e5b96d361d9215580a3b7cb7');
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '친구야, 밥 한번 먹자',
+            description: '11월 15일(일) 오후 2시 · 옥산교회 새벽이슬청년회',
+            imageUrl: site + 'og.png',
+            imageWidth: 1200,
+            imageHeight: 630,
+            link: { mobileWebUrl: site, webUrl: site }
+          },
+          buttons: [{ title: '초대장 보기', link: { mobileWebUrl: site, webUrl: site } }]
+        });
+        return;
+      }
+    } catch (e) {}
     var data = { title: document.title, text: '11월 15일(일) 오후 2시, 옥산교회', url: location.href };
     try {
       if (navigator.share) {
