@@ -36,8 +36,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',-ap
 .cover h1 em{position:relative;display:inline-block}
 .mark{position:absolute;left:0;right:0;bottom:-7px;width:100%;height:10px;margin:0;overflow:visible}
 .mark path{fill:none;stroke:var(--yellow);stroke-width:4;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:240;stroke-dashoffset:0}
-.cover-top{display:flex;justify-content:space-between;gap:12px;font-size:16px;letter-spacing:.01em}
-.cover-head{margin-top:44px}
+.cover-top{display:flex;align-items:center;justify-content:flex-start;gap:10px;font-size:16px;letter-spacing:.01em}
+.cover-top img{flex:none;width:42px;height:42px;border-radius:50%;background:#fff}
+.cover-head{margin-top:38px}
 .dday{display:inline-block;margin:0;background:var(--yellow);color:var(--green);border-radius:999px;padding:3px 14px;font-size:14px;font-weight:600}
 .cover h1{margin:10px 0 0;font-size:clamp(40px,13vw,58px);line-height:1.15;letter-spacing:-1px}
 .cover h1 em{font-style:normal;color:var(--yellow)}
@@ -156,7 +157,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
 <div class="page">
 
 <header class="cover">
-  <div class="cover-top display"><span>옥산교회 새벽이슬청년회</span></div>
+  <div class="cover-top display"><img src="logo.png" alt="" width="240" height="240"><span>옥산교회 새벽이슬청년회</span></div>
   <div class="stamp" aria-label="제1회 친구 초청 모임"><b class="display">제1회</b><span>친구 초청</span></div>
   <div class="cover-head">
   <p class="dday" id="dday" hidden></p>
