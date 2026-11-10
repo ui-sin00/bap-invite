@@ -36,7 +36,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',-ap
 .cover h1 em{position:relative;display:inline-block}
 .mark{position:absolute;left:0;right:0;bottom:-7px;width:100%;height:10px;margin:0;overflow:visible}
 .mark path{fill:none;stroke:var(--yellow);stroke-width:4;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:240;stroke-dashoffset:0}
-.cover-top{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.cover-top{display:flex;justify-content:space-between;gap:12px;font-size:16px;letter-spacing:.01em}
 .cover-head{margin-top:44px}
 .dday{display:inline-block;margin:0;background:var(--yellow);color:var(--green);border-radius:999px;padding:3px 14px;font-size:14px;font-weight:600}
 .cover h1{margin:10px 0 0;font-size:clamp(40px,13vw,58px);line-height:1.15;letter-spacing:-1px}
@@ -72,7 +72,7 @@ h2::after{content:"";display:block;width:28px;height:4px;margin-top:8px;border-r
 .end-photo{position:relative;overflow:hidden}
 .end-photo img{display:block;width:100%;height:auto}
 .end-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(31,77,58,1) 0%,rgba(31,77,58,.97) 5%,rgba(31,77,58,.9) 10%,rgba(31,77,58,.78) 15%,rgba(31,77,58,.62) 20%,rgba(31,77,58,.45) 25%,rgba(31,77,58,.29) 30%,rgba(31,77,58,.15) 35%,rgba(31,77,58,.06) 40%,rgba(31,77,58,0) 45%,rgba(31,77,58,0) 78%,rgba(22,54,40,.75) 100%)}
-.host{position:absolute;left:0;right:0;bottom:22px;z-index:1;margin:0;font-size:14px;color:var(--rice)}
+.host{position:absolute;left:0;right:0;bottom:24px;z-index:1;margin:0;font-family:'Gmarket Sans','Pretendard',sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;color:var(--rice)}
 .end-body{position:relative;padding:76px 24px 0}
 .end p.display{margin:0 0 6px;font-size:clamp(24px,7.6vw,30px);line-height:1.3;white-space:nowrap}
 .end p.display em{font-style:normal;color:var(--yellow)}
@@ -156,7 +156,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
 <div class="page">
 
 <header class="cover">
-  <div class="cover-top"><span>옥산교회 새벽이슬청년회</span></div>
+  <div class="cover-top display"><span>옥산교회 새벽이슬청년회</span></div>
   <div class="stamp" aria-label="제1회 친구 초청 모임"><b class="display">제1회</b><span>친구 초청</span></div>
   <div class="cover-head">
   <p class="dday" id="dday" hidden></p>
@@ -203,7 +203,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
 
 <main>
 <section class="reveal">
-  <h2 class="display">이날 뭐 하냐면</h2>
+  <h2 class="display">이날 뭐 하나요?</h2>
   <ol class="steps">
     <li><span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r=".8"/><circle cx="12" cy="12" r=".8"/><circle cx="15" cy="15" r=".8"/></svg></span><b>게임</b><small>오후 2시 시작</small></li>
     <li><span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></span><b>방탈출</b></li>
@@ -233,7 +233,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
     <dt>아는 사람이 초대한 친구밖에 없는데?</dt>
     <dd>팀으로 같이 놀아서 금방 섞여.</dd>
     <dt>뭐 챙겨 가?</dt>
-    <dd>몸만 와. 옷은 편하게.</dd>
+    <dd>몸만 와.</dd>
     <dt>중간에 가도 돼?</dt>
     <dd>돼. 그래도 저녁은 먹고 가.</dd>
   </dl>
