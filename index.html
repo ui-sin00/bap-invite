@@ -80,7 +80,9 @@ h2::after{content:"";display:block;width:28px;height:4px;margin-top:8px;border-r
 .end .btn{width:100%;background:var(--yellow);border-color:var(--yellow);color:var(--green)}
 .end #copied{color:var(--yellow);margin:10px 0 0}
 .addr{margin:0 0 4px;font-weight:600;font-size:19px}
-.addr-sub{margin:0 0 26px;color:var(--sub)}
+.addr-sub{margin:0 0 18px;color:var(--sub)}
+#map{height:210px;margin:0 0 20px;border-radius:14px;overflow:hidden;background:var(--bg)}
+#map[hidden]{display:none}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;border:1.5px solid var(--green);background:#fff;color:var(--green);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
 .btn.fill{background:var(--green);color:#fff}
@@ -89,6 +91,11 @@ dl{margin:0}
 dt{font-weight:600;margin-top:28px}
 dt:first-child{margin-top:0}
 dd{margin:4px 0 0;color:var(--sub)}
+.talk{display:flex;flex-direction:column;gap:10px;margin:0}
+.talk dt,.talk dd{max-width:84%;margin:0;padding:11px 16px;font-weight:400;line-height:1.5}
+.talk dt{align-self:flex-start;margin-top:14px;border-radius:18px 18px 18px 4px;background:#EDF0ED;color:var(--ink);transform-origin:0 100%}
+.talk dt:first-child{margin-top:0}
+.talk dd{align-self:flex-end;border-radius:18px 18px 4px 18px;background:var(--green);color:var(--rice);transform-origin:100% 100%}
 footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
 #copied{min-height:1.6em;font-weight:600}
 
@@ -129,6 +136,16 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
   .js .in .steps li::after{transform:scaleY(1)}
   .js .circ path{stroke-dashoffset:520;transition:stroke-dashoffset .7s ease-out 1.25s}
   .js .in .circ path{stroke-dashoffset:0}
+  .js .talk>*{opacity:0;transform:translateY(8px) scale(.94);transition:opacity .3s ease,transform .35s cubic-bezier(.3,1.4,.5,1)}
+  .js .in .talk>*{opacity:1;transform:none}
+  .js .in .talk>*:nth-child(1){transition-delay:0.10s}
+  .js .in .talk>*:nth-child(2){transition-delay:0.32s}
+  .js .in .talk>*:nth-child(3){transition-delay:0.54s}
+  .js .in .talk>*:nth-child(4){transition-delay:0.76s}
+  .js .in .talk>*:nth-child(5){transition-delay:0.98s}
+  .js .in .talk>*:nth-child(6){transition-delay:1.20s}
+  .js .in .talk>*:nth-child(7){transition-delay:1.42s}
+  .js .in .talk>*:nth-child(8){transition-delay:1.64s}
   .js .end .end-photo img{transform:scale(1.12);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
   .js .end.in .end-photo img{transform:none}
   .js .in .steps li:nth-child(1) .ic{transition-delay:0.00s}
@@ -151,6 +168,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
 }
 </style>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js" crossorigin="anonymous" defer></script>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ab824057e5b96d361d9215580a3b7cb7&amp;autoload=false&amp;libraries=services" defer></script>
 </head>
 <body>
 <div class="page">
@@ -217,6 +235,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
   <h2 class="display">오는 길</h2>
   <p class="addr">옥산교회</p>
   <p class="addr-sub" id="addr">충북 청주시 흥덕구 옥산면 청주역로 646-8</p>
+  <div id="map" role="img" aria-label="옥산교회 위치 지도" hidden></div>
   <div class="btns">
     <a class="btn fill" href="https://map.kakao.com/link/to/옥산교회,36.6658655,127.3753764">카카오맵 길찾기</a>
     <a class="btn" href="https://map.naver.com/p/search/청주%20옥산교회">네이버지도</a>
@@ -227,7 +246,7 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
 
 <section class="reveal before-end">
   <h2 class="display">오기 전에</h2>
-  <dl>
+  <dl class="talk">
     <dt>교회 안 다니는데 가도 돼?</dt>
     <dd>응! 이날은 놀고 밥 먹는 날이야!</dd>
     <dt>아는 사람이 초대한 친구밖에 없는데?</dt>
@@ -332,6 +351,31 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
     copy(location.href, '링크를 복사했어요');
   });
 })();
+</script>
+<script>
+window.addEventListener('load', function () {
+  var box = document.getElementById('map');
+  if (!box || !window.kakao || !kakao.maps || !kakao.maps.load) return;
+  kakao.maps.load(function () {
+    try {
+      var pos = new kakao.maps.LatLng(36.6658655, 127.3753764);
+      box.hidden = false;
+      var map = new kakao.maps.Map(box, { center: pos, level: 4, draggable: false, scrollwheel: false, disableDoubleClickZoom: true });
+      var marker = new kakao.maps.Marker({ position: pos, map: map });
+      if (kakao.maps.services) {
+        new kakao.maps.services.Geocoder().addressSearch('충북 청주시 흥덕구 옥산면 청주역로 646-8', function (r, st) {
+          if (st === kakao.maps.services.Status.OK && r[0]) {
+            var p = new kakao.maps.LatLng(r[0].y, r[0].x);
+            map.setCenter(p); marker.setPosition(p);
+          }
+        });
+      }
+      kakao.maps.event.addListener(map, 'click', function () {
+        location.href = 'https://map.kakao.com/link/map/옥산교회,36.6658655,127.3753764';
+      });
+    } catch (e) { box.hidden = true; }
+  });
+});
 </script>
 </body>
 </html>
