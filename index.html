@@ -304,8 +304,8 @@ footer{padding:36px 24px 52px;text-align:center;color:var(--sub);font-size:14px}
   document.getElementById('share').addEventListener('click', function () {
     var site = 'https://bap-hanbeon.vercel.app/';
     try {
+      if (window.Kakao && !Kakao.isInitialized()) Kakao.init('ab824057e5b96d361d9215580a3b7cb7');
       if (window.Kakao && Kakao.Share) {
-        if (!Kakao.isInitialized()) Kakao.init('ab824057e5b96d361d9215580a3b7cb7');
         Kakao.Share.sendDefault({
           objectType: 'feed',
           content: {
